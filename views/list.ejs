@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/styles.css">
     <title>To Do List</title>
+    
+
+
 </head>
 <body>
-    <!--using the control flow tags "<%  %>" to add some js if/else/switch/while statemets
-    each line with js code have to be surrounded with this tags-->
-   <!--  <% if(kindOfDay==='Sunday'){ %> -->
-    <!--every js variable (key name and its value) that I want to pass to the html (ejs file) have to surrounded with the tags <%= variabke %>-->    
-<!--     <h1 style='color:red;'>Its a <%=kindOfDay%></h1>
-    <% }else{ %>
-        <h1 style=color:green;'>its <%=kindOfDay%></h1>
-    <% } %> -->
-    <h1> <%= kindOfDay %> </h1>
-    <form action="/" method="POST">
-        <input type="text" name="newItem" placeholder="what else to do?">
-        <button type="submit" name="button">Add</button>
-    </form>
-    <ul>        
-        <% for(let i=0; i< itemsToAdd.length; i++){ %>
-            <li> <%= itemsToAdd[i] %> </li>
-        <% } %>
-    </ul>
+
+    <div class="box" id="heading">
+        <h1> <%= listTitle %> </h1>
+    </div>
+    <div class="box">
+        <% for(let i=0; i< newListItems.length; i++){ %>
+            <div class="item">
+                <input type="checkbox">
+                <p> 
+                    <%= newListItems[i] %> 
+                </p>
+            </div>
+        <% } %>       
+        <form action="/" method="POST" class="item">
+            <input placeholder="New Item" type="text" name="newItem" autocomplete="off" >
+            <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        </form>
+    </div>  
+    
 </body>
 </html> 
