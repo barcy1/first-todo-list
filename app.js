@@ -2,6 +2,8 @@
 const express =require('express');
 // getting body-parser
 const bodyParser= require('body-parser');
+//requiring the date.js module I made. Becouse its local I need to pass the route to the file!
+const date=require(__dirname + '/date.js');// requiring the the module- "__diename" tells js the file is this folder.
 //intiate the items array
 let items =['Buy the food','Cook the food','Eat the food'];
 let workItems=[];
@@ -16,12 +18,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 // getting the response for user access to the root of the project(homepage)
 app.get('/', function(req,res){
     // set today as the day of the week with number 0-6 (sunday=0)
-    let today = new Date();
-    let dateOptions={weekday:'long',
-     day:'numeric',
-     month:'long'}; // setting the option object with the details I want to display and how.
-    let todayIs=today.toLocaleDateString('en-US',dateOptions);//using the toLocalString() method to calculate the date in the location of the user.
-    console.log(todayIs);
+    
     //intiate the variable that will be the key value of the variable I wat to pass to the ejs file
     
     // check if the day is on weekend(sunday=0).
@@ -65,6 +62,10 @@ app.post('/', function(req,res){
 app.post('/work', function(req,res){
     workItems.push(req.body.newItem);
     res.redirect('/work');
+})
+
+app.get('/about', function(req,res){
+    res.render('about') // when I get an http request to to about route my response is to render the about page.
 })
  
 
